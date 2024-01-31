@@ -27,7 +27,7 @@ count  = data['emergency_or_not'].value_counts()
 
 print(count)
 
-# load images and store it in numpy array
+# load images and sxtore it in numpy array
 # empty list to store the images
 X = []
 # iterating over each image
