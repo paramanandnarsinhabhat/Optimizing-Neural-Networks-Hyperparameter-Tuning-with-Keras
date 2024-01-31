@@ -228,3 +228,116 @@ model.summary()
 
 
 print(model.summary())
+
+model_history = model.fit(X_train, y_train, epochs=50, batch_size=128,validation_data=(X_valid,y_valid))
+
+# getting predictions in the form of class as well as probabilities
+
+predictions = model.predict(X_valid)[:, 0]
+prediction = predictions.reshape(-1,)
+
+# converting probabilities to classes
+prediction_int = prediction >= 0.5
+prediction_int = prediction_int.astype(int)
+
+# accuracy on validation set
+print('Accuracy on validation set:', accuracy_score(y_valid,prediction_int), '%')
+
+# summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper left')
+plt.show()
+
+### 4. Increasing number of epochs
+# increase number of epochs
+model=Sequential()
+model.add(InputLayer(input_shape=(X_train.shape[1],)))
+model.add(Dense(100, activation='sigmoid'))
+model.add(Dense(units=1, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy', optimizer="sgd", metrics=['accuracy'])
+
+# model summary
+model.summary()
+
+model_history = model.fit(X_train, y_train, epochs=100, batch_size=128,validation_data=(X_valid,y_valid))
+
+# getting predictions in the form of class as well as probabilities
+
+predictions = model.predict(X_valid)[:, 0]
+prediction = predictions.reshape(-1,)
+
+# converting probabilities to classes
+prediction_int = prediction >= 0.5
+prediction_int = prediction_int.astype(int)
+
+# accuracy on validation set
+print('Accuracy on validation set:', accuracy_score(y_valid, prediction_int), '%')
+
+# summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper left')
+plt.show()
+
+### 5. Changing the optimizer
+# importing adam optimizer from keras optimizer module 
+from keras.optimizers import Adam
+
+# defining the adam optimizer and setting the learning rate as 10^-5
+adam = Adam(lr=1e-5)
+
+# change optimizer
+model=Sequential()
+
+model.add(InputLayer(input_shape=(224*224*3,)))
+model.add(Dense(100, activation='sigmoid'))
+model.add(Dense(100, activation='sigmoid'))
+model.add(Dense(units=1, activation='sigmoid'))
+
+model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
+# model summary
+model.summary()
+
+model_history = model.fit(X_train, y_train, epochs=100, batch_size=128,validation_data=(X_valid,y_valid))
+
+
+# getting predictions in the form of class as well as probabilities
+
+predictions = model.predict(X_valid)[:, 0]
+prediction = predictions.reshape(-1,)
+
+# converting probabilities to classes
+prediction_int = prediction >= 0.5
+prediction_int = prediction_int.astype(int)
+
+# accuracy on validation set
+print('Accuracy on validation set:', accuracy_score(y_valid, prediction_int), '%')
+
+# summarize history for loss
+plt.plot(model_history.history['loss'])
+plt.plot(model_history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
+
+# summarize history for accuracy
+plt.plot(model_history.history['accuracy'])
+plt.plot(model_history.history['val_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper right')
+plt.show()
+
+
+
