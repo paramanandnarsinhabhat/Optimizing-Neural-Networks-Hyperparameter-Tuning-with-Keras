@@ -1,4 +1,4 @@
-Certainly! Here are the steps to solve the Emergency vs Non-Emergency vehicle classification problem based on the provided code:
+
 
 ### Step 1: Import Necessary Libraries and Functions
 - Import essential libraries and functions, including NumPy, Pandas, Matplotlib, Keras, and scikit-learn.
@@ -39,4 +39,3 @@ Certainly! Here are the steps to solve the Emergency vs Non-Emergency vehicle cl
 - Experiment with different hyperparameters to improve the model's performance. This includes changing activation functions, increasing hidden layers, increasing epochs, and changing the optimizer.
 - After making changes, recompile and retrain the model, then evaluate its performance.
 
-These steps outline the process of solving the Emergency vs Non-Emergency vehicle classification problem using deep learning with Keras and scikit-learn. You can refer to the specific code comments and explanations in your original code for more details on each step.
